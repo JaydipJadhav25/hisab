@@ -1,0 +1,13 @@
+{
+  "name": "Hisab - Daily Tiffin Ka Hisab",
+  "short_name": "Hisab",
+  "description": "Automated daily tiffin management for bachelors, roommates and PG groups.",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#FFFBF5",
+  "theme_color": "#F97316",
+  "icons": [
+    { "src": "/icon-192.svg", "sizes": "192x192", "type": "image/svg+xml" },
+    { "src": "/icon-512.svg", "sizes": "512x512", "type": "image/svg+xml" }
+  ]
+}

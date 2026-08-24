@@ -1,0 +1,72 @@
+{
+  "app": {
+    "name": "Hisab",
+    "tagline": "Daily Tiffin Ka Hisab, Ab Automatically.",
+    "taglineEn": "Your Daily Tiffin, Automatically Managed."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "myGroups": "My Groups",
+    "history": "History",
+    "hisab": "Hisab",
+    "profile": "Profile",
+    "notifications": "Notifications",
+    "logout": "Log out"
+  },
+  "auth": {
+    "login": "Log in",
+    "register": "Create account",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "password": "Password",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "welcomeBack": "Welcome back",
+    "createAccount": "Create your account"
+  },
+  "tiffin": {
+    "today": "Today's Tiffin",
+    "full": "Full",
+    "half": "Half",
+    "none": "No Tiffin",
+    "confirm": "Confirm Tiffin",
+    "confirmed": "Your tiffin is confirmed",
+    "changeSelection": "Change Selection",
+    "selectionLocked": "Selection Locked",
+    "cutoffPassed": "Today's cutoff has passed"
+  },
+  "group": {
+    "createGroup": "Create Group",
+    "joinGroup": "Join Group",
+    "members": "Members",
+    "provider": "Tiffin Provider",
+    "pricing": "Pricing",
+    "duration": "Duration",
+    "inviteCode": "Group Code",
+    "todaysOrder": "Today's Order",
+    "groupSettings": "Group Settings",
+    "closeGroup": "Close Group",
+    "renewGroup": "Renew Group"
+  },
+  "hisab": {
+    "title": "Hisab",
+    "totalAmount": "Total Amount",
+    "paid": "Paid",
+    "pending": "Pending",
+    "status": "Status"
+  },
+  "comingSoon": {
+    "title": "Split Expenses",
+    "subtitle": "Coming Soon",
+    "description": "Restaurant bills, shopping, travel and shared expenses — automatic settlements, coming soon."
+  },
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "back": "Back",
+    "getStarted": "Get Started",
+    "seeHowItWorks": "See How It Works"
+  }
+}

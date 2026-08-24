@@ -1,0 +1,72 @@
+{
+  "app": {
+    "name": "Hisab",
+    "tagline": "आजचा डबा हिसाब, आता आपोआप.",
+    "taglineEn": "तुमचा दैनंदिन डबा, आपोआप व्यवस्थापित."
+  },
+  "nav": {
+    "dashboard": "डॅशबोर्ड",
+    "myGroups": "माझे गट",
+    "history": "इतिहास",
+    "hisab": "हिसाब",
+    "profile": "प्रोफाइल",
+    "notifications": "सूचना",
+    "logout": "लॉगआउट"
+  },
+  "auth": {
+    "login": "लॉगिन करा",
+    "register": "खाते तयार करा",
+    "name": "नाव",
+    "email": "ईमेल",
+    "phone": "फोन",
+    "password": "पासवर्ड",
+    "noAccount": "खाते नाही?",
+    "haveAccount": "आधीच खाते आहे?",
+    "welcomeBack": "पुन्हा स्वागत आहे",
+    "createAccount": "तुमचे खाते तयार करा"
+  },
+  "tiffin": {
+    "today": "आजचा डबा",
+    "full": "फुल",
+    "half": "हाफ",
+    "none": "डबा नको",
+    "confirm": "डबा निश्चित करा",
+    "confirmed": "तुमचा डबा निश्चित झाला आहे",
+    "changeSelection": "निवड बदला",
+    "selectionLocked": "निवड लॉक झाली आहे",
+    "cutoffPassed": "आजची अंतिम वेळ संपली आहे"
+  },
+  "group": {
+    "createGroup": "गट तयार करा",
+    "joinGroup": "गटात सामील व्हा",
+    "members": "सदस्य",
+    "provider": "डबा पुरवठादार",
+    "pricing": "दर",
+    "duration": "कालावधी",
+    "inviteCode": "गट कोड",
+    "todaysOrder": "आजची ऑर्डर",
+    "groupSettings": "गट सेटिंग्ज",
+    "closeGroup": "गट बंद करा",
+    "renewGroup": "गट नूतनीकरण करा"
+  },
+  "hisab": {
+    "title": "हिसाब",
+    "totalAmount": "एकूण रक्कम",
+    "paid": "भरलेले",
+    "pending": "बाकी",
+    "status": "स्थिती"
+  },
+  "comingSoon": {
+    "title": "खर्च विभागणी",
+    "subtitle": "लवकरच येत आहे",
+    "description": "हॉटेल बिल, खरेदी, प्रवास आणि सामायिक खर्च — आपोआप हिशोब, लवकरच येत आहे."
+  },
+  "common": {
+    "loading": "लोड होत आहे...",
+    "save": "जतन करा",
+    "cancel": "रद्द करा",
+    "back": "मागे",
+    "getStarted": "सुरुवात करा",
+    "seeHowItWorks": "हे कसे काम करते ते पहा"
+  }
+}
