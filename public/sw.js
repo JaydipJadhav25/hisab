@@ -18,10 +18,23 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
+// self.addEventListener("fetch", (event) => {
+//   const url = new URL(event.request.url);
+//   if (url.pathname.startsWith("/api")) return; // never cache API responses
+//   event.respondWith(
+//     caches.match(event.request).then((cached) => cached || fetch(event.request))
+//   );
+// });
+
+
+
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
   if (url.pathname.startsWith("/api")) return; // never cache API responses
   event.respondWith(
-    caches.match(event.request).then((cached) => cached || fetch(event.request))
+    caches
+      .match(event.request)
+      .then((cached) => cached || fetch(event.request))
+      .catch(() => caches.match("/index.html"))
   );
 });
