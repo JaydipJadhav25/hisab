@@ -44,24 +44,76 @@ export function useRegister() {
   });
 }
 
+// export function useLogin() {
+//   const queryClient = useQueryClient();
+
+//   return useMutation({
+
+//     mutationFn: async (payload: LoginPayload) => {
+//       const { data } = await api.post<{ user: User }>("/auth/login", payload);
+//       return data.user;
+//     },
+//     onSuccess: (user) => queryClient.setQueryData(authKeys.me, user),
+    
+//   });
+// }
+
+
 export function useLogin() {
   const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: async (payload: LoginPayload) => {
-      const { data } = await api.post<{ user: User }>("/auth/login", payload);
+      const { data } = await api.post<{
+        user: User;
+        accessToken: string;
+        refreshToken: string;
+      }>("/auth/login", payload);
+        console.log("data : " , data);
+      // Save tokens
+      localStorage.setItem("hisab.accessToken", data.accessToken);
+      localStorage.setItem("hisab.refreshToken", data.refreshToken);
+
       return data.user;
     },
-    onSuccess: (user) => queryClient.setQueryData(authKeys.me, user),
+
+    onSuccess: (user) => {
+      queryClient.setQueryData(authKeys.me, user);
+    },
   });
 }
 
+
+
+// export function useLogout() {
+//   const queryClient = useQueryClient();
+//   return useMutation({
+//     mutationFn: async () => {
+//       await api.post("/auth/logout");
+//     },
+//     onSuccess: () => {
+//       queryClient.setQueryData(authKeys.me, null);
+//       queryClient.clear();
+//     },
+//   });
+// }
+
+
+
 export function useLogout() {
   const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: async () => {
       await api.post("/auth/logout");
     },
+
     onSuccess: () => {
+      // Clear tokens from localStorage
+      localStorage.removeItem("hisab.accessToken");
+      localStorage.removeItem("hisab.refreshToken");
+
+      // Clear user data
       queryClient.setQueryData(authKeys.me, null);
       queryClient.clear();
     },
