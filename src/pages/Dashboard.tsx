@@ -17,7 +17,7 @@ export function Dashboard() {
     <div className="flex flex-col gap-8">
       <div>
         <h1 className="font-display text-2xl font-semibold text-ink">
-          Good Morning, {firstName} 👋
+          Good Morning, {firstName} 
         </h1>
         <p className="mt-1 text-ink-muted">
           {groups?.length ?? 0} groups · {activeGroups} active

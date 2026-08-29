@@ -81,6 +81,14 @@ export function GroupDetail() {
             {copied ? <Check className="h-4 w-4 text-success" /> : <Copy className="h-4 w-4" />}
           </button>
         )}
+
+        <button
+            onClick={copyInviteCode}
+            className="flex items-center gap-2 rounded-xl border border-border bg-cream px-3 py-2 text-sm font-medium text-ink"
+          >
+            {group.inviteCode}
+            {copied ? <Check className="h-4 w-4 text-success" /> : <Copy className="h-4 w-4" />}
+          </button>
       </div>
 
       <div className="flex gap-1 overflow-x-auto border-b border-border">
