@@ -102,3 +102,11 @@ export interface AppNotification {
   read: boolean;
   createdAt: string;
 }
+
+export interface DayCalendarSummary {
+  date: string; // YYYY-MM-DD
+  full: number;
+  half: number;
+  none: number;
+  responded: number;
+}

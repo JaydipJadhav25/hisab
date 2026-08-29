@@ -11,6 +11,7 @@ import { HistoryTab } from "./group/HistoryTab";
 import { MembersTab } from "./group/MembersTab";
 import { HisabTab } from "./group/HisabTab";
 import { SettingsTab } from "./group/SettingsTab";
+import { CalendarTab } from "./group/CalendarTab";
 
 const STATUS_TONE: Record<string, "success" | "warning" | "neutral"> = {
   ACTIVE: "success",
@@ -19,7 +20,9 @@ const STATUS_TONE: Record<string, "success" | "warning" | "neutral"> = {
   CLOSED: "neutral",
 };
 
-type TabKey = "today" | "order" | "history" | "members" | "hisab" | "settings";
+// type TabKey = "today" | "order" | "history" | "members" | "hisab" | "settings";
+type TabKey = "today" | "order" | "calendar" | "history" | "members" | "hisab" | "settings";
+
 
 export function GroupDetail() {
   const { groupId } = useParams<{ groupId: string }>();
@@ -47,6 +50,7 @@ export function GroupDetail() {
     { key: "members", label: "Members" },
     { key: "hisab", label: "Hisab" },
     { key: "settings", label: "Settings", adminOnly: true },
+    { key: "calendar", label: "Calendar" },
   ];
 
   function copyInviteCode() {
@@ -117,6 +121,7 @@ export function GroupDetail() {
         {tab === "members" && <MembersTab group={group} />}
         {tab === "hisab" && <HisabTab group={group} />}
         {tab === "settings" && isAdmin && <SettingsTab group={group} />}
+        {tab === "calendar" && <CalendarTab group={group} />}
       </div>
     </div>
   );

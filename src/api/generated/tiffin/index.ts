@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
-import type { DailyTiffinRecord, TiffinType, TodayOrder } from "@/types";
+import type { DailyTiffinRecord, DayCalendarSummary, TiffinType, TodayOrder } from "@/types";
 
 export const tiffinKeys = {
   today: (groupId: string) => ["groups", groupId, "tiffin", "today"] as const,
@@ -82,5 +82,20 @@ export function useOverrideTiffin(groupId: string) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["groups", groupId, "tiffin"] });
     },
+  });
+}
+
+
+export function useTiffinCalendar(groupId: string | undefined, month: string) {
+  return useQuery({
+    queryKey: ["groups", groupId ?? "", "tiffin", "calendar", month],
+    queryFn: async () => {
+      const { data } = await api.get<{ month: string; days: DayCalendarSummary[] }>(
+        `/groups/${groupId}/tiffin/calendar`,
+        { params: { month } }
+      );
+      return data.days;
+    },
+    enabled: !!groupId,
   });
 }
