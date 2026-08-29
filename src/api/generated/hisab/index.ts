@@ -19,7 +19,7 @@ export function useMemberHisab(groupId: string | undefined, userId?: string) {
     queryFn: async () => {
       const path = userId
         ? `/groups/${groupId}/hisab/${userId}`
-        : `/groups/${groupId}/hisab/self`;
+        : `/groups/${groupId}/hisab/me`;
       const { data } = await api.get<{ hisab: MemberHisab }>(path);
       return data.hisab;
     },

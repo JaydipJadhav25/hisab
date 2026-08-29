@@ -26,7 +26,7 @@ export function useMemberPayments(groupId: string | undefined, userId?: string) 
     queryFn: async () => {
       const path = userId
         ? `/groups/${groupId}/payments/${userId}`
-        : `/groups/${groupId}/payments/self`;
+        : `/groups/${groupId}/payments/me`;
       const { data } = await api.get<{ payments: Payment[] }>(path);
       return data.payments;
     },

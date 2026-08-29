@@ -7,6 +7,8 @@ import type { Group } from "@/types";
 export function OrderTab({ group }: { group: Group }) {
   const { data: order, isLoading } = useTodayOrder(group.id);
 
+  console.log("data  " , order);
+
   if (isLoading) return <Skeleton className="h-48" />;
   if (!order || order.records.length === 0) {
     return (

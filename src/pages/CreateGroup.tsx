@@ -24,7 +24,7 @@ const schema = z
     startDate: z.string().min(1, "Start date is required"),
     duration: z.enum(["1_WEEK", "2_WEEKS", "1_MONTH", "3_MONTHS", "CUSTOM"]),
     endDate: z.string().optional(),
-    cutoffTime: z.string().min(1),
+    
   })
   .refine((d) => d.half <= d.full, {
     message: "Half price should usually be less than or equal to full price",
@@ -47,7 +47,7 @@ export function CreateGroup() {
     formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: { cutoffTime: "09:00", duration: "1_MONTH" },
+    // defaultValues: { cutoffTime: "09:00", duration: "1_MONTH" },
   });
   const duration = watch("duration");
 
@@ -59,7 +59,7 @@ export function CreateGroup() {
       startDate: values.startDate,
       duration: values.duration,
       endDate: values.endDate,
-      cutoffTime: values.cutoffTime,
+      // cutoffTime: values.cutoffTime,
     });
     navigate(`/groups/${group.id}`);
   }
@@ -127,12 +127,12 @@ export function CreateGroup() {
           <Input label="End Date" type="date" error={errors.endDate?.message} {...register("endDate")} />
         )}
 
-        <Input
+        {/* <Input
           label="Daily Cutoff Time"
           type="time"
           error={errors.cutoffTime?.message}
           {...register("cutoffTime")}
-        />
+        /> */}
 
         {createGroup.isError && (
           <p className="text-sm text-danger">

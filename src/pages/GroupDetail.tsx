@@ -28,6 +28,8 @@ export function GroupDetail() {
   const [tab, setTab] = useState<TabKey>("today");
   const [copied, setCopied] = useState(false);
 
+  console.log("data: ", group);
+
   if (isLoading || !group) {
     return (
       <div className="flex flex-col gap-4">

@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
+import { authToken } from "@/lib/authToken";
 import type { User, Language } from "@/types";
 
 export interface RegisterPayload {
@@ -24,12 +25,12 @@ async function fetchMe(): Promise<User> {
   return data.user;
 }
 
-export function useMe(options?: { enabled?: boolean }) {
+export function useMe() {
   return useQuery({
     queryKey: authKeys.me,
     queryFn: fetchMe,
     retry: false,
-    enabled: options?.enabled ?? true,
+    enabled: !!authToken.get(), // don't even try if there's no token yet
   });
 }
 
@@ -37,83 +38,37 @@ export function useRegister() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (payload: RegisterPayload) => {
-      const { data } = await api.post<{ user: User }>("/auth/register", payload);
-      return data.user;
+      const { data } = await api.post<{ user: User; token: string }>("/auth/register", payload);
+      return data;
     },
-    onSuccess: (user) => queryClient.setQueryData(authKeys.me, user),
-  });
-}
-
-// export function useLogin() {
-//   const queryClient = useQueryClient();
-
-//   return useMutation({
-
-//     mutationFn: async (payload: LoginPayload) => {
-//       const { data } = await api.post<{ user: User }>("/auth/login", payload);
-//       return data.user;
-//     },
-//     onSuccess: (user) => queryClient.setQueryData(authKeys.me, user),
-    
-//   });
-// }
-
-
-export function useLogin() {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async (payload: LoginPayload) => {
-      const { data } = await api.post<{
-        user: User;
-        accessToken: string;
-        refreshToken: string;
-      }>("/auth/login", payload);
-        console.log("data : " , data);
-      // Save tokens
-      localStorage.setItem("hisab.accessToken", data.accessToken);
-      localStorage.setItem("hisab.refreshToken", data.refreshToken);
-
-      return data.user;
-    },
-
-    onSuccess: (user) => {
+    onSuccess: ({ user, token }) => {
+      authToken.set(token);
       queryClient.setQueryData(authKeys.me, user);
     },
   });
 }
 
-
-
-// export function useLogout() {
-//   const queryClient = useQueryClient();
-//   return useMutation({
-//     mutationFn: async () => {
-//       await api.post("/auth/logout");
-//     },
-//     onSuccess: () => {
-//       queryClient.setQueryData(authKeys.me, null);
-//       queryClient.clear();
-//     },
-//   });
-// }
-
-
+export function useLogin() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (payload: LoginPayload) => {
+      const { data } = await api.post<{ user: User; token: string }>("/auth/login", payload);
+      return data;
+    },
+    onSuccess: ({ user, token }) => {
+      authToken.set(token);
+      queryClient.setQueryData(authKeys.me, user);
+    },
+  });
+}
 
 export function useLogout() {
   const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: async () => {
-      await api.post("/auth/logout");
+      authToken.clear();
     },
-
     onSuccess: () => {
-      // Clear tokens from localStorage
-      localStorage.removeItem("hisab.accessToken");
-      localStorage.removeItem("hisab.refreshToken");
-
-      // Clear user data
       queryClient.setQueryData(authKeys.me, null);
       queryClient.clear();
     },
